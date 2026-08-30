@@ -9,13 +9,3 @@ def fetch_transcript(video_id):
     except Exception as e:
         print(f"Error fetching transcript: {e}")
         return None
-
-
-if __name__ == "__main__":
-    video_id = "4TsJ7t7IBiw"
-    transcript = fetch_transcript(video_id)
-
-    if transcript:
-        print("Transcript fetched successfully!")
-    else:
-        print("Transcript fetching failed!")

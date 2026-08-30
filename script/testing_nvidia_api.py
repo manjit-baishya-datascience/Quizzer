@@ -23,7 +23,8 @@ def llm_call(prompt, model, temperature=1, thinking=False):
 
     return completion.choices[0].message.content
 
-prompt = "Write a short story about a robot learning to love."
-model = "deepseek-ai/deepseek-v4-pro-0813"
-response = llm_call(prompt, model)
-print(response)
+if __name__ == "__main__"
+    prompt = "Write a short story about a robot learning to love."
+    model = "deepseek-ai/deepseek-v4-pro-0813"
+    response = llm_call(prompt, model)
+    print(response)
