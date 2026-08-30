@@ -19,11 +19,11 @@ load_dotenv()
 def call_llm(prompt, model, temperature=1, thinking=False):
     client = OpenAI(
         base_url="https://integrate.api.nvidia.com/v1",
-        api_key=os.environ.get("NVIDIA_API_KEY"),
-        timeout=30.0
+        api_key=os.environ.get("NVIDIA_API_KEY")
     )
 
     try:
+        logger.info(f"LLM call started")
         completion = client.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt}],
@@ -34,6 +34,7 @@ def call_llm(prompt, model, temperature=1, thinking=False):
             extra_body={"chat_template_kwargs": {"thinking": thinking}},
             stream=False
         )
+        logger.info(f"LLM call completed")
         return completion.choices[0].message.content
 
     # simplified error message
@@ -49,11 +50,6 @@ def call_llm(prompt, model, temperature=1, thinking=False):
     except RateLimitError:
         logger.error(f"Rate limited / queue congested for model '{model}' — try again shortly or switch provider")
         raise ValueError(f"Rate limited / queue congested for model '{model}' — try again shortly or switch provider")
-
-    # switches to a different model if available
-    except APITimeoutError:
-        logger.error(f"Request to model '{model}' timed out after 30s")
-        raise ValueError(f"Request to model '{model}' timed out after 30s")
 
     # simplified error message
     except APIConnectionError:

@@ -11,7 +11,7 @@ def fetch_transcript(video_id):
         return None
 
 if __name__ == "__main__":
-    video_id = "4TsJ7t7IBiw"
+    video_id = "yWgHx0HE8m8"
     transcript = fetch_transcript(video_id)
 
     if transcript:

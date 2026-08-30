@@ -8,7 +8,9 @@ ytt_api = YouTubeTranscriptApi()
 
 def fetch_transcript(video_id):
     try:
-        transcript = ytt_api.fetch(video_id)
+        logger.info(f"Fetching started")
+        fetched = ytt_api.fetch(video_id)
+        transcript = " ".join(snippet.text for snippet in fetched)
         logger.info(f"Transcript fetched successfully for video_id={video_id}")
         return transcript
 
