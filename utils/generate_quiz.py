@@ -1,6 +1,6 @@
 # quiz_generator.py
 import json
-from utils.call_llm import llm_call
+from utils.call_llm import call_llm
 
 QUIZ_PROMPT_TEMPLATE = """Here is the transcript of a YouTube video:
 
@@ -35,8 +35,11 @@ def _strip_json_fences(raw: str) -> str:
 def generate_quiz(transcript, model="deepseek-ai/deepseek-v4-pro-0813"):
     prompt = QUIZ_PROMPT_TEMPLATE.format(transcript=transcript)
 
-    raw_output = llm_call(prompt, model=model, temperature=1, thinking=False)
-    cleaned = _strip_json_fences(raw_output)
+    raw_output = call_llm(prompt, model=model, temperature=1, thinking=False)
 
+    if raw_output is None:
+        raise ValueError("LLM returned no content — empty or filtered response")
+
+    cleaned = _strip_json_fences(raw_output)
     quiz_data = json.loads(cleaned)
     return quiz_data

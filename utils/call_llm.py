@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def llm_call(prompt, model, temperature=1, thinking=False):
+def call_llm(prompt, model, temperature=1, thinking=False):
     client = OpenAI(
         base_url="https://integrate.api.nvidia.com/v1",
         api_key=os.environ.get("NVIDIA_API_KEY"),
