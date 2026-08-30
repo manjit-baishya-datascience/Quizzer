@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def llm_call(prompt, model, temperature=1, thinking=False):
+def call_llm(prompt, model, temperature=1, thinking=False):
     client = OpenAI(
         base_url = "https://integrate.api.nvidia.com/v1",
         api_key = os.environ.get("NVIDIA_API_KEY")
@@ -23,8 +23,8 @@ def llm_call(prompt, model, temperature=1, thinking=False):
 
     return completion.choices[0].message.content
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     prompt = "Write a short story about a robot learning to love."
     model = "deepseek-ai/deepseek-v4-pro-0813"
-    response = llm_call(prompt, model)
+    response = call_llm(prompt, model)
     print(response)

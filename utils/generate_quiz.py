@@ -38,7 +38,7 @@ def generate_quiz(transcript, model="deepseek-ai/deepseek-v4-pro-0813"):
     raw_output = call_llm(prompt, model=model, temperature=1, thinking=False)
 
     if raw_output is None:
-        raise ValueError("LLM returned no content — empty or filtered response")
+        raise ValueError("LLM returned no content!")
 
     cleaned = _strip_json_fences(raw_output)
     quiz_data = json.loads(cleaned)
