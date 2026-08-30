@@ -11,9 +11,10 @@ from openai import (
     APIStatusError,
 )
 from dotenv import load_dotenv
+from utils.logger import get_logger
 
+logger = get_logger(__name__)
 load_dotenv()
-
 
 def call_llm(prompt, model, temperature=1, thinking=False):
     client = OpenAI(
@@ -35,26 +36,41 @@ def call_llm(prompt, model, temperature=1, thinking=False):
         )
         return completion.choices[0].message.content
 
+    # simplified error message
     except NotFoundError:
+        logger.error(f"Model '{model}' not found — check the model ID is correct and still live on the catalog")
         raise ValueError(f"Model '{model}' not found — check the model ID is correct and still live on the catalog")
 
+    # simplified error message
     except AuthenticationError:
+        logger.error("Invalid or missing NVIDIA_API_KEY — check your .env file")
         raise ValueError("Invalid or missing NVIDIA_API_KEY — check your .env file")
-
+    # branches to a different provider if available
     except RateLimitError:
+        logger.error(f"Rate limited / queue congested for model '{model}' — try again shortly or switch provider")
         raise ValueError(f"Rate limited / queue congested for model '{model}' — try again shortly or switch provider")
 
+    # switches to a different model if available
     except APITimeoutError:
+        logger.error(f"Request to model '{model}' timed out after 30s")
         raise ValueError(f"Request to model '{model}' timed out after 30s")
 
+    # simplified error message
     except APIConnectionError:
+        logger.error("Could not connect to NVIDIA API — check your internet connection")
         raise ValueError("Could not connect to NVIDIA API — check your internet connection")
 
+    # retry with greater max token length
     except LengthFinishReasonError:
+        logger.error(f"Response from model '{model}' was truncated — increase max_tokens or shorten the prompt")
         raise ValueError(f"Response from model '{model}' was truncated — increase max_tokens or shorten the prompt")
 
+    # flags inappropriate content - could be a good feature ahead!
     except ContentFilterFinishReasonError:
+        logger.error(f"Response from model '{model}' was blocked by a content filter")
         raise ValueError(f"Response from model '{model}' was blocked by a content filter")
 
+    # pass everything else as is
     except APIStatusError as e:
+        logger.error(f"API error ({e.status_code}) calling model '{model}': {e.message}")
         raise ValueError(f"API error ({e.status_code}) calling model '{model}': {e.message}")
