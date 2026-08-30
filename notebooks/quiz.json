@@ -1,0 +1,102 @@
+[
+  {
+    "question": "What type of M.2 socket is the Wi-Fi slot on the HP EliteDesk 800 G3 mini?",
+    "options": [
+      "E key",
+      "M key",
+      "B key",
+      "A key"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "Which interface can an M.2 E key slot potentially support besides wireless cards?",
+    "options": [
+      "PCIe, USB 2.0, and other interfaces",
+      "SATA and USB 3.0",
+      "PCIe x16 and Thunderbolt",
+      "Only USB 3.1"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "What tool did the creator use on Windows to check if the M.2 E key slot supported PCIe?",
+    "options": [
+      "Hardware Info 64",
+      "Device Manager",
+      "CPU-Z",
+      "Task Manager"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "What is a potential issue mentioned in the video when trying to use non-Wi-Fi cards in some OEM motherboards?",
+    "options": [
+      "Whitelisting of certain cards",
+      "Overheating",
+      "BIOS password",
+      "Missing drivers"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "What speed did the 2.5 gigabit Ethernet adapter achieve in the test?",
+    "options": [
+      "Better than gigabit but not full 2.5 gigabit",
+      "Exactly 10 gigabit",
+      "Less than 100 megabit",
+      "Full 2.5 gigabit"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "What is the Coral M.2 Accelerator used for?",
+    "options": [
+      "Machine learning acceleration with a Google Edge TPU",
+      "Wi-Fi 6E connectivity",
+      "Additional USB ports",
+      "Hardware video encoding"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "Which open source software was used with the Coral TPU to test AI object detection?",
+    "options": [
+      "Frigate",
+      "Blue Iris",
+      "ZoneMinder",
+      "MotionEye"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "What did the creator use to manage Docker containers for the Frigate setup?",
+    "options": [
+      "Portainer",
+      "Kubernetes",
+      "Docker Desktop",
+      "Rancher"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "What happened when the creator connected the dual SATA adapter and hard drives to the system?",
+    "options": [
+      "The display stopped working until grounding was connected",
+      "The system would not boot",
+      "The drives were not detected",
+      "The power supply failed"
+    ],
+    "correct_answer_index": 0
+  },
+  {
+    "question": "How many PCIe lanes did the M.2 E key slot on the HP EliteDesk 800 G3 mini support?",
+    "options": [
+      "One lane of PCIe Gen 2",
+      "Two lanes of PCIe Gen 3",
+      "Four lanes of PCIe Gen 4",
+      "One lane of PCIe Gen 4"
+    ],
+    "correct_answer_index": 0
+  }
+]
