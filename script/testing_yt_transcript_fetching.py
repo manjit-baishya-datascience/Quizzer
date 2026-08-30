@@ -10,7 +10,6 @@ def fetch_transcript(video_id):
         print(f"Error fetching transcript: {e}")
         return None
 
-
 if __name__ == "__main__":
     video_id = "4TsJ7t7IBiw"
     transcript = fetch_transcript(video_id)
